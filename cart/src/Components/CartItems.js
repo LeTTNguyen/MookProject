@@ -11,11 +11,12 @@ import data from "../DataDEMO";
 import { useDispatch, useSelector } from "react-redux";
 import { actionDeleteProductAPI, actionGetListProductAPI, actionUpdateQuantityAPI } from "../Redux/Actions/CartAction";
 import { updateQuantityAPI } from "../API/CartApi";
+import { AiFillDelete } from "react-icons/ai";
 
 function CartItems(props) {
   //const { products } = data; // data tạm thời demo => lấy data từ bảng order detail
-  const [quantity, setQuantity] = useState(1);
-  console.log("set quantity", quantity);
+  
+  
   const dispatch = useDispatch();
   // const [total, setTotal] = useState();
   let stateRedux = useSelector((state) => state);
@@ -25,22 +26,23 @@ function CartItems(props) {
   );
    
 
-  //console.log(listProduct);
+  console.log(listProduct);
   // usbeEffect(() => {
   //   setTotal(
   //     listProduct.reduce((prev, current) => listProduct.productSalePrice? listProduct.productSalePrice: listProduct.productPrice * listProduct.quantity, 0)
   //   );
   // }, [total]);
 
-  let handleClickDelete = () => {
-      dispatch(actionDeleteProductAPI());
+  let handleClickDelete = (idProduct) => {
+      dispatch(actionDeleteProductAPI(idProduct));
   }
   let onChangeQuantity = (event,productId)=>{
     console.log(event.target.value);
     console.log(event);
     console.log(productId);
     let quantity = event.target.value;
-    dispatch(actionUpdateQuantityAPI(productId,"1",quantity));
+    dispatch(actionUpdateQuantityAPI(productId,"1",quantity));//userId 1
+    
   }
 
   useEffect(() => {
@@ -89,20 +91,22 @@ function CartItems(props) {
                               onChangeQuantity(e, product.productId)
                             }}
                           >
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
+                            num
+                            <option >{product.quantity ? product.quantity : 1}</option>
+                            <option  value="1" >1</option>
+                            <option  value="2">2</option>
+                            <option  value="3">3</option>
+                            <option  value="4">4</option>
+                            <option  value="5">5</option>
+                            <option  value="6">6</option>
+                            <option  value="7">7</option>
+                            <option  value="8">8</option>
+                            <option  value="9">9</option>
+                            <option  value="10">10</option>
                           </Form.Select>
                         </p>
 
-                        <p className="text-sm-start " onClick={handleClickDelete}>Xóa</p>
+                        <p className="text-sm-start " ><AiFillDelete onClick={()=> handleClickDelete(product.productId)}/></p>
                       </Navbar.Text>
                     </Navbar.Collapse>
                   </Col>

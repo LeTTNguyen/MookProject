@@ -1,12 +1,18 @@
-import { deleteAllProductAPI, deleteProductAPI, getlistCartAPI, updateQuantityAPI } from "../../API/CartApi";
-import { DELETE_CART_TEMP, DELETE_PRODUCT, GET_LIST_PRODUCT, UPDATE_QUANTITY } from "../Contants/ActionType";
+import { createNewCart, deleteAllProductAPI, deleteProductAPI, getlistCartAPI, updateQuantityAPI } from "../../API/CartApi";
+import { GET_LIST_PRODUCT, UPDATE_QUANTITY } from "../Contants/ActionType";
 
-
+export let actionCreateNewCartAPI = (cartNew) =>{
+    return(dispath)=>{
+        return createNewCart(cartNew).then((response)=>{
+            //dispath action get cart API 
+        })
+    }
+}
 
 export let actionGetListProductAPI = (id) =>{
     return(dispath) => {
         return getlistCartAPI(id).then((response) =>{
-            console.log('hihjff', response);
+            console.log('List Cart: ', response);
             dispath(actionListProductRedux(response));
         })
     }
@@ -16,27 +22,23 @@ export let actionListProductRedux = (listProductAPIParam) =>{
     return {type: GET_LIST_PRODUCT, payload: listProductAPIParam};
 }
 
-export let actionDeleteProductAPI =  (idDelete) =>{
+export let actionDeleteProductAPI =  (idProductDelete) =>{
     return(dispatch) =>{
-        return deleteProductAPI(idDelete).then((response)=>{
-            dispatch(actionDeleteProductRedux(idDelete));
+        return deleteProductAPI(idProductDelete).then((response)=>{
+            dispatch(actionGetListProductAPI("1"));//userId là 1
         })
     }
 }
-export let actionDeleteProductRedux = (idDelete) =>{
-    return {type: DELETE_PRODUCT, payload: idDelete};
-}
+
 
 export let actionDeleteAllProduct = (userId_delete) =>{
     return (dispatch)=>{
         return deleteAllProductAPI(userId_delete).then((response)=>{
-            dispatch(actionDeleteAllProductRedux(userId_delete));
+            dispatch(actionGetListProductAPI("1"));
         })
     }
 }
-export let actionDeleteAllProductRedux = (userId_delete) =>{
-    return {type: DELETE_CART_TEMP, payload: userId_delete};
-}
+
 
 export let actionUpdateQuantityAPI = (productId, userId,quantityNew)=>{
     return (dispatch) =>{

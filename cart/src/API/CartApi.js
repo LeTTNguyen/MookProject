@@ -1,4 +1,8 @@
 import { api } from "./api"
+// tạo giỏ hàng mới khi click thêm vào giỏ hàng, tạo theo userId
+let createNewCart = (cartNew)=>{
+    return api("POST","carts/",cartNew);
+}
 // lấy thông tin product theo orderId để lấy giá, tổng, số lượng
 let getlistCartAPI = (userId) => {
     return api("GET","carts/userId/" + userId);
@@ -21,4 +25,4 @@ let deleteAllProductAPI = (userId) =>{
 let updateQuantityAPI = (productId, userId, quantity) =>{
     return api("PUT",`carts?productId=${productId}&userId=${userId}`, {quantity});
 }
-export{getlistCartAPI,addNewInfoUserToOrderListAPI,deleteProductAPI,updateQuantityAPI,deleteAllProductAPI}
+export{getlistCartAPI,addNewInfoUserToOrderListAPI,deleteProductAPI,updateQuantityAPI,deleteAllProductAPI,createNewCart}

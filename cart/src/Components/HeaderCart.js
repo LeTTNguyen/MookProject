@@ -10,12 +10,16 @@ import {
 } from "react-bootstrap";
 import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse';
 import data from '../DataDEMO';
+import { useSelector } from 'react-redux';
 
 
 const HeaderCart = () => {
   const { products } = data;
   const [cartItems, setCartItems] = useState([]);
 
+  let totalQ = useSelector(
+    (state) => state.listProductRedux.totalQuantity
+  );
   return (
     <Navbar bg="White" variant="light" style={{height:80}}>
     <Container>
@@ -42,11 +46,11 @@ const HeaderCart = () => {
           <Dropdown alignRight>
             <Dropdown.Toggle variant="light">
               <FaShoppingCart color="black" fontSize="25px" />
-              <Badge>0</Badge>{/* đếm sản phẩm trong giỏ hàng */}
+              <Badge>{totalQ}</Badge>{/* đếm sản phẩm trong giỏ hàng */}
             </Dropdown.Toggle>
             <Dropdown.Menu style={{ minWidth: 370 }}>
               
-                <span style={{ padding: 10 }}>Giỏ hàng đang trống</span>
+                <span style={{ padding: 10 }}>Giỏ hàng đang có {totalQ ? totalQ : 0} sản phẩm </span>
 
             </Dropdown.Menu>
           </Dropdown>

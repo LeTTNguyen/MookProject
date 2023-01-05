@@ -18,6 +18,7 @@ function ConfirmOrder(props) {
 
   let {onHandleCloseForm} = props;
   let show=useSelector((state)=> state.showFormRedux.showForm);
+  console.log(show);
   let onHandleClickClose = () =>{
     onHandleCloseForm();
   }
