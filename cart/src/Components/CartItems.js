@@ -6,8 +6,8 @@ import {
   Image,
   Navbar,
   Row,
+  Table,
 } from "react-bootstrap";
-import data from "../DataDEMO";
 import { useDispatch, useSelector } from "react-redux";
 import { actionDeleteProductAPI, actionGetListProductAPI, actionUpdateQuantityAPI } from "../Redux/Actions/CartAction";
 import { updateQuantityAPI } from "../API/CartApi";
@@ -54,25 +54,20 @@ function CartItems(props) {
       {listProduct &&
         listProduct.content &&
         listProduct.content.map((product) => (
-          <Navbar>
-            <Container>
-              <Navbar.Brand key={product.productId}>
-                <Row>
-                  <Col sm={4}>
-                    <Image
+        <Table key={product.productId}>
+              <tbody>
+                <tr>
+                  <td>
+                  <Image
                       // src="/images/jpgoods_61_345589.webp"
                       src={product.image1}
-                      //alt="ao khoac"
                       alt={product.productName}
                       class="float-left"
                       height="200px"
-                      //href="#home"
                     />
-                  </Col>
-                  <Col sm={4}>
-                    <Navbar.Collapse className="justify-content-top fs-6">
-                      <Navbar.Text>
-                        <p className="text-sm-start fw-bold">
+                  </td>
+                  <td colSpan={2}>
+                  <p className="text-sm-start fw-bold">
                           {product.productName}
                         </p>
                         <p className="text-sm-start">Size: L</p>
@@ -91,7 +86,7 @@ function CartItems(props) {
                               onChangeQuantity(e, product.productId)
                             }}
                           >
-                            num
+                            
                             <option >{product.quantity ? product.quantity : 1}</option>
                             <option  value="1" >1</option>
                             <option  value="2">2</option>
@@ -107,14 +102,10 @@ function CartItems(props) {
                         </p>
 
                         <p className="text-sm-start " ><AiFillDelete onClick={()=> handleClickDelete(product.productId)}/></p>
-                      </Navbar.Text>
-                    </Navbar.Collapse>
-                  </Col>
-                </Row>
-              </Navbar.Brand>
-              <br />
-            </Container>
-          </Navbar>
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
         ))}
     </>
 

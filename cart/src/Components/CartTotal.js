@@ -5,6 +5,7 @@ import { BiTimer } from "react-icons/bi";
 import { GoPackage } from "react-icons/go";
  import { useNavigate  } from "react-router-dom";
 import { useSelector } from "react-redux";
+import CurrencyFormat from 'react-currency-format';
 
 function CartTotal(props) {
   let navigate = useNavigate(); 
@@ -32,8 +33,7 @@ function CartTotal(props) {
     );
     console.log(totalQ);
   
-
-
+    
   return (
     <Card style={{ width: "auto" }}>
       <ListGroup>
@@ -43,7 +43,17 @@ function CartTotal(props) {
               <Navbar.Brand>Tổng đơn hàng </Navbar.Brand>
               <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
-                <Navbar.Text>{total1} VND</Navbar.Text>
+                <Navbar.Text style={{color: 'red',fontSize: 20}}>
+                  <CurrencyFormat
+                thousandSeparator={true} 
+                displayType={'text'}
+                  value={total1}
+                  decimalSeparator={'.'}
+                  suffix={'  VND'}
+                  thousandSpacing={'3'}
+                  />
+                
+                  </Navbar.Text>
               </Navbar.Collapse>
             </Container>
           </Navbar>
