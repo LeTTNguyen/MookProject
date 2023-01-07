@@ -1,7 +1,7 @@
 import { CLOSE_INPUT_FORM, SHOW_INPUT_FORM } from "../Contants/ActionType";
 
 let initialState = {
-    showForm: true,
+    showForm: false,
   };
 let FormReducer = (state = initialState, action) => {
     switch (action.type) {

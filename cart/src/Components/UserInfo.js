@@ -1,80 +1,118 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Form, Navbar, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function UserInfo(props) {
-  let {onHandleShowForm}=props;
-  let onHandleClickShowForm = () =>{
+  let { onHandleShowForm } = props;
+  let onHandleClickShowForm = () => {
     onHandleShowForm();
-  }
+  };
 
-  let navigate = useNavigate(); 
-  const routeChangeToCart = () =>{ 
-    let path = `/cart`; 
-    navigate(path, {replace: true});
-  }
-  
+  let navigate = useNavigate();
+  const routeChangeToCart = () => {
+    let path = `/cart`;
+    navigate(path, { replace: true });
+  };
+
+  let [FirstName, setFirstName] = useState("");
+  let [LastName, setLastName] = useState("");
+  let [PhoneNumber, setPhoneNumber] = useState("");
+  let [Address, setAddress] = useState("");
+
+
   return (
-    <Form>
-      <Form.Label>
-        <h2> THÔNG TIN GIAO HÀNG</h2>
-      </Form.Label>
-      <Form.Group
-        as={Row}
-        className="mb-3"
-        controlId="exampleForm.ControlInput1"
-      >
-        <Form.Label className="text-left">Họ tên người nhận</Form.Label>
-        <Col
-          sm="15
-              "
-        >
-          <Form.Control type="fullname" placeholder="name" />
-        </Col>
-        <Col> </Col>
-      </Form.Group>
-
+    <>
       <Navbar bg="light">
         <Container>
           <Navbar.Brand>
-            <Form.Group
-              as={Row}
-              className="mb-3"
-              controlId="formPlaintextEmail"
-            >
-              <Form.Label column sm="2">
-                Email
+            <Form>
+              <Form.Label>
+                <h2> THÔNG TIN GIAO HÀNG</h2>
               </Form.Label>
-              <Col sm="10">
-                <Form.Control type="email" placeholder="name@example.com" />
-              </Col>
-            </Form.Group>
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                
+                  <Form.Label className="text-start" column sm="2">Họ </Form.Label>
+                  <Col sm="10">
+                  <Form.Control 
+                  id="FirstName"
+                  name="FirstName"
+                  placeholder="Input FirstName"
+                  type="FirstName"
+                  value={FirstName}
+                  onChange={(event) => {
+                    setFirstName(event.target.value);
+                  }}
+                  />
+                  </Col>
+                
 
-            <Form.Group
-              as={Row}
-              className="mb-3 text-left"
-              controlId="formBasicPhone"
-            >
-              <Form.Label column sm="2">
-                Điện thoại
-              </Form.Label>
-              <Col sm="8">
-                <Form.Control type="phone" placeholder="phone number" />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formBasicAddress">
-              <Form.Label column sm="5">
-                Địa chỉ giao hàng
-              </Form.Label>
-              <Col sm="15">
-                <Form.Control
+                  <Form.Label className="text-start" column sm="2">Tên </Form.Label>
+                  <Col sm="10">
+                  <Form.Control 
+                  id="LastName"
+                  name="LastName"
+                  placeholder="Input LastName"
+                  type="LastName"
+                  value={LastName}
+                  onChange={(event) => {
+                    setLastName(event.target.value);
+                  }}
+                  />
+                  </Col>
+                
+              
+              </Form.Group>
+
+              <Form.Group
+                as={Row}
+                className="mb-3 text-left"
+                controlId="formBasicPhone"
+              >
+                <Form.Label className="text-start" column sm="2">
+                  Điện thoại
+                </Form.Label>
+                <Col sm="10">
+                  <Form.Control 
+                  id="PhoneNumber"
+                  name="PhoneNumber"
+                  placeholder="Input PhoneNumber"
+                  type="PhoneNumber"
+                  value={PhoneNumber}
+                  onChange={(event) => {
+                    setPhoneNumber(event.target.value);
+                  }}
+                  />
+                </Col>
+              </Form.Group>
+
+              <Form.Group
+                as={Row}
+                className="mb-3"
+                controlId="formBasicAddress"
+              >
+                <Form.Label className="text-start" column sm="5">
+                  Địa chỉ giao hàng
+                </Form.Label>
+                <Col sm="15">
+                  <Form.Control
+                  id="Address"
+                  name="Address"
+                  placeholder="Input Address"
+                  type="Address"
+                  value={Address}
+                  onChange={(event) => {
+                    setAddress(event.target.value);
+                  }}
                   as="textarea"
                   rows={4}
-                  type="address"
-                  placeholder="address"
-                />
-              </Col>
-            </Form.Group>
+                  />
+                </Col>
+              </Form.Group>
+            </Form>
           </Navbar.Brand>
         </Container>
       </Navbar>
@@ -88,16 +126,19 @@ function UserInfo(props) {
             </Button>
           </Navbar.Brand>
           <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end" >
+          <Navbar.Collapse className="justify-content-end">
             {/* <Navbar.Text>4</Navbar.Text> */}
-            <Button variant="primary" type="submit" onclick={onHandleClickShowForm}>
+            <Button
+              variant="primary"
+              type="submit"
+              onclick={onHandleClickShowForm}
+            >
               ĐẶT HÀNG
             </Button>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      
-    </Form>
+    </>
   );
 }
 

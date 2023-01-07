@@ -23,14 +23,15 @@ function DeliveryContainer(props) {
         <HeaderCart></HeaderCart>
         <Row>
           <Col sm={8}>
-            <UserInfo onHandleShowForm={onHandleShowForm}/>
+            <UserInfo onHandleShowForm={onHandleShowForm} />
           </Col>
           <Col sm={4}>
-            
+          
           </Col>
         </Row>
         <ConfirmOrder
         onHandleCloseForm = {onHandleCloseForm}
+        onHandleShowForm={onHandleShowForm}
         />
       </Container>
     </div>
