@@ -25,4 +25,16 @@ let deleteAllProductAPI = (userId) =>{
 let updateQuantityAPI = (productId, userId, quantity) =>{
     return api("PUT",`carts?productId=${productId}&userId=${userId}`, {quantity});
 }
-export{getlistCartAPI,addNewInfoUserToOrderListAPI,deleteProductAPI,updateQuantityAPI,deleteAllProductAPI,createNewCart}
+//update address and phonenumber
+let updatePaymentProfileAPI = (address,phoneNumber)=>{
+    return api("PUT","users/paymentProfile",{address}, {phoneNumber} );
+}
+
+let getTotalAPI = (userId)=>{
+    return api("GET", `carts/sum?userId=${userId}`,null);
+}
+
+export{getlistCartAPI,addNewInfoUserToOrderListAPI,
+    deleteProductAPI,updateQuantityAPI,deleteAllProductAPI,createNewCart,
+    updatePaymentProfileAPI,getTotalAPI
+}

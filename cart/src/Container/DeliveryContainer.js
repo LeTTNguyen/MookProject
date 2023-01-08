@@ -1,10 +1,13 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import HeaderCart from '../Components/HeaderCart';
-import UserInfo from '../Components/UserInfo';
+
 import { useDispatch } from "react-redux";
 import { actionCloseShowForm, actionShowForm } from '../Redux/Actions/FormAction';
 import ConfirmOrder from '../Components/ConfirmOrder';
+import UserInfoPayment from '../Components/UserInfoPayment';
+import Bill from '../Components/Bill';
+
 
 
 function DeliveryContainer(props) {
@@ -12,7 +15,8 @@ function DeliveryContainer(props) {
   let onHandleCloseForm = () => {
     dispatchRedux(actionCloseShowForm());
   }
-  let onHandleShowForm =()=>{
+  let onHandleShowForm = () =>{
+    console.log("click show");
     dispatchRedux(actionShowForm());
   }
   
@@ -23,16 +27,17 @@ function DeliveryContainer(props) {
         <HeaderCart></HeaderCart>
         <Row>
           <Col sm={8}>
-            <UserInfo onHandleShowForm={onHandleShowForm} />
+            <UserInfoPayment onHandleShowForm={onHandleShowForm}  />
           </Col>
           <Col sm={4}>
-          
+            <Bill/>
           </Col>
         </Row>
         <ConfirmOrder
         onHandleCloseForm = {onHandleCloseForm}
         onHandleShowForm={onHandleShowForm}
         />
+      
       </Container>
     </div>
     );

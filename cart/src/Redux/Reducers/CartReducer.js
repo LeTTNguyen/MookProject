@@ -1,9 +1,10 @@
-import { DELETE_CART_TEMP, DELETE_PRODUCT, GET_LIST_PRODUCT, UPDATE_QUANTITY } from "../Contants/ActionType";
+import { GET_LIST_PRODUCT, GET_TOTAL,  UPDATE_QUANTITY } from "../Contants/ActionType";
 
 let initialState = {
     listProduct: [],
     total: 0,
     totalQuantity: 0,
+    totalAPI: 0,
     
   };
 let CartReducer = (state = initialState, action) => {
@@ -52,6 +53,12 @@ let CartReducer = (state = initialState, action) => {
                 total: s,
                 totalQuantity: sQ
                 
+            }
+        case GET_TOTAL:
+            console.log(action.payload);
+            return{
+                ...state,
+                totalAPI: action.payload
             }
         default:
             return { ...state };

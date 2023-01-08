@@ -14,3 +14,9 @@ export const GET_INFO_USER = "GetInfoUser";
 
 export const CREATE_CART_NEW = "CreateNewCart";
 
+export const GET_TOTAL = "getTotal";
+
+export const UPDATE_ADDRESS_PHONE = "changeAddressPhoneNumber";
+
+
+
